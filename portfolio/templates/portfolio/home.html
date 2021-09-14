@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container text-center">
+   <h1 class="mt-3">Mohamed's Portfolio</h1>
+   <a href="{% url 'blog:all-blogs' %}" class="btn btn-warning mb-3">Blogs</a>
+   <br>
+   <img src="{% static 'portfolio/myname.jpg' %}" width="450"/>
+   <br>
+
+   <div class="container mt-5 mb-3">
+      <div class="row">
+         {% for project in projects %}
+            <div class="col-md-4">
+               
+                  <div class="card" style="width: 18rem;">
+                     <img src="{{project.image.url}}" class="card-img-top" alt="...">
+                     <div class="card-body">
+                     <h5 class="card-title">{{project}}</h5>
+                     <p class="card-text">{{project.description}}</p>
+                     {% if project.url %}
+                        <a href="{{project.url}}" class="btn btn-primary">Link</a>
+                     {% endif %}
+                     </div>
+                  </div>
+               
+            </div>
+         {% endfor %} 
+      </div>
+   </div>
+      
+       
+   
+</div>
+   {% endblock content %}
